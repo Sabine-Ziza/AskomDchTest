@@ -6,26 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import page.*;
+import page.AddToCartPage;
+import page.CheckoutPage;
+import page.MenNavigationPage;
 
 import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestNavigationLinks extends BaseTests {
-    @Test
-    public void testMenVieAwProduct(){
-        MenNavigationPage menProduct = homePage.menLink();
-        menProduct.viewProduct();
-        AddToCartPage addToCartPage = new AddToCartPage(driver);
-        addToCartPage.clickCartButton();
-        addToCartPage.clickViewLink();
-        addToCartPage.updateCart(3);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement actualMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("woocommerce-message")));
-        assertEquals(actualMessage.getText(),"Cart updated.", "incorrect message");
-
-    }
+public class CheckoutPageTest extends BaseTests {
     @Test
     public void testCheckoutPage(){
         MenNavigationPage menProduct = homePage.menLink();
@@ -52,21 +41,4 @@ public class TestNavigationLinks extends BaseTests {
         assertEquals(actualMessage.getText(),"Thank you. Your order has been received.","incorrect message");
 
     }
-    @Test
-    public void testWomenViewProduct(){
-        WomenNavigationPage womenProduct = homePage.womenLink();
-        womenProduct.viewWomenProduct();
-    }
-    @Test
-    public void testAccessoriesViewProduct(){
-        AccessoriesPage accessoriesPage = homePage.accesoriesLink();
-        accessoriesPage.viewAccessoriesProduct();
-    }
-    @Test
-    public void testViewAndScrollAboutPage(){
-        AboutPage  aboutPage = homePage.aboutLink();
-        aboutPage.viewAndScrollAboutPage();
-
-    }
-
 }

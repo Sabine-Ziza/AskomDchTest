@@ -42,7 +42,7 @@ public AboutPage aboutLink(){
     clickLink("About");
     return new AboutPage(driver);
 }
-public void clickCartIcon(){
+public void hoverCartIcon(){
     Actions actions = new Actions(driver);
     actions.moveToElement(driver.findElement(cartIcon)).perform();
 }
