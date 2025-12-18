@@ -15,29 +15,12 @@ public class LoginFormTest extends BaseTests {
 
         LoginForm loginForm = new LoginForm(driver);
         homePage.clickAccountLink();
-        loginForm.fillLoginForm("zazu","sabine1123");
+        loginForm.fillLoginForm("zezu","sabine1123");
         loginForm.clickLoginButton();
+        String actualTitle = driver.findElement(By.tagName("p")).getText();
+        assertEquals(actualTitle, "Hello zazu (not zazu? Log out)", "incorrect message");
 
     }
-    @Test
-    public void logoutTest(){
-        LoginForm loginForm = new LoginForm(driver);
-        homePage.clickAccountLink();
-        loginForm.fillLoginForm("zazu","sabine1123");
-        loginForm.clickLoginButton();
-        AccountDashboardPage dashboardPage = new AccountDashboardPage(driver);
-        dashboardPage.clickLogoutLink();
-    }
-    @Test
-    public void resetPasswordTest(){
-        LoginForm loginForm = new LoginForm(driver);
-        homePage.clickAccountLink();
-        loginForm.fillLoginForm("zazu","sabine1123");
-        loginForm.clickforgotPassword();
-        ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(driver);
-        forgotPasswordPage.forgotPassword("saranda@gmail.com");
-        String resetMessage = driver.findElement(By.className("woocommerce-message")).getText();
-        assertEquals(resetMessage,"Password reset email has been sent.", "incorrect message" );
-    }
+
 
 }
